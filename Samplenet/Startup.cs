@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Samplenet.Startup))]
-namespace Samplenet
+[assembly: OwinStartupAttribute(typeof(FindYourSportBuddy.UI.Startup))]
+namespace FindYourSportBuddy.UI
 {
     public partial class Startup
     {

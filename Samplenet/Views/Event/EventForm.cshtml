@@ -1,0 +1,67 @@
+﻿@model FindYourSportBuddy.UI.ViewModels.EventFormViewModel
+
+@{
+    ViewBag.Title = Model.Action;
+}
+
+<h2>@Model.Heading</h2>
+
+@using (Html.BeginForm(Model.Action, "Event"))
+{
+    <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(e => e.Id)
+    <div class="form-group">
+        @Html.LabelFor(e => e.Name)
+        @Html.TextBoxFor(e => e.Name, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(e => e.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.Date)
+        @Html.TextBoxFor(e => e.Date, new { @class = "form-control", placeholder = "eg 1 May 2017" })
+        @Html.ValidationMessageFor(e => e.Date)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.Time)
+        @Html.TextBoxFor(e => e.Time, new { @class = "form-control", placeholder = "eg 20:00" })
+        @Html.ValidationMessageFor(e => e.Time)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.Region)
+        @Html.EnumDropDownListFor(e => e.Region, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.Region)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.Venue)
+        @Html.TextBoxFor(e => e.Venue, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.Venue)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.CategoryId)
+        @Html.DropDownListFor(e => e.CategoryId, Model.CategoryList, "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.CategoryId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.ParticipantsRequired)
+        @Html.TextBoxFor(e => e.ParticipantsRequired, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.ParticipantsRequired)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.IsPrivate)
+        @Html.EditorFor(e => e.IsPrivate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.IsPrivate)
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

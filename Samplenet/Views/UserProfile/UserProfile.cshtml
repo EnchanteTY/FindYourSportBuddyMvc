@@ -1,0 +1,65 @@
+﻿@model FindYourSportBuddy.UI.ViewModels.UserProfileViewModel
+@using Microsoft.AspNet.Identity
+<div class="text-center profileTray">
+    <div>
+        <img class="profileThumbnail" src="@Url.Action("GetProfileImage", "UserProfile", new {userName = Model.UserProfile.Name})" />"
+    </div>
+    <div class="profile-detail">
+        <h2><strong>@Model.UserProfile.Name</strong></h2>
+        <h3>@Model.UserProfile.Age,@Model.UserProfile.Gender</h3>
+        <div class="buttonTray">
+            @if (User.Identity.IsAuthenticated && Model.UserProfile.UserId != User.Identity.GetUserId())
+            {
+                <button data-follow-id="@Model.UserProfile.UserId"
+                        class="btn js-toggle-follow
+                                         @(Model.IsFollowing ? "btn-info" : "btn-default") btn">
+                    @(Model.IsFollowing ? "Following" : "Follow?")
+                </button>
+
+                if (Model.IsFriend)
+                {
+                    <a data-unfriend-id="@Model.UserProfile.UserId"
+                       class="js-unfriend" href="#">
+                        UnFriend
+                    </a>
+                }
+                else if (Model.FriendRequestSent)
+                {
+                    <label data-request-id="@Model.UserProfile.UserId"
+                           class="js-friend-request-label label label-success">Friend Request Sent</label>
+
+                }
+               
+                else if (Model.PendingFriendRequest)
+                {
+                    <label data-request-id="@Model.UserProfile.UserId"
+                           class="label label-warning">Pending Request</label>
+                }
+                else
+                {
+                    <button data-friend-id="@Model.UserProfile.UserId"
+                            class="btn js-friend-request btn-default">
+                        Friend?
+
+                    </button>
+                }
+
+            }
+
+
+
+        </div>
+
+        <h4>Hi, I am interested in @Model.Category.</h4>
+        <h4>I prefer to exercise in @Model.UserProfile.PreferSportRegion, </h4>
+        <h4>Especially at @Model.UserProfile.PreferSportVenue, in @Model.UserProfile.PreferSportTime.</h4>
+        <h4>@Model.UserProfile.Introduction</h4>
+    </div>
+
+
+</div>
+
+
+
+
+

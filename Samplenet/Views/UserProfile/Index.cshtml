@@ -1,0 +1,108 @@
+﻿@model FindYourSportBuddy.UI.ViewModels.UserProfileViewModel
+
+@{
+    ViewBag.Title = "Profile";
+}
+<h2>Profile</h2>
+
+<div class="col-md-4">
+    @Html.Action("UserProfile", "UserProfile", new { userName = Model.UserProfile.Name })
+</div>
+<div class="col-md-8">
+    @if (Request.IsAuthenticated && User.Identity.Name == Model.UserProfile.Name)
+    {
+        if (ViewBag.Data == "Edit")
+        {
+            <a href="@Url.Action("Edit", "UserProfile", new {userName = Model.UserProfile.Name})">Edit My Profile</a>
+            <hr />
+        }
+        <a href="@Url.Action("Match","UserProfile")">View My Recommended Match</a><hr/>
+        <a href="@Url.Action("Index","Friend")">Manage My Friends</a><hr/>
+       
+
+    }
+    @Html.Action("GetUserEvent", "UserProfile", new { userId = Model.UserProfile.UserId})
+
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-toggle-follow").click(function (e) {
+
+                var button = $(e.target);
+                if (button.hasClass("btn-default")) {
+                    $.post("/api/following", { followeeId: button.attr("data-follow-id") })
+                        .done(function () {
+                            button
+                                .removeClass("btn-default")
+                                .addClass("btn-info")
+                                .text("Following");
+                        })
+                        .fail(function () {
+                            alert("Something failed...");
+                        });
+                }
+                else {
+                    $.ajax({
+                        url: "/api/following/" + button.attr("data-follow-id"),
+                        method: "DELETE"
+                    })
+                        .done(function () {
+                            button
+                                .removeClass("btn-info")
+                                .addClass("btn-default")
+                                .text("Follow?");
+                        })
+                        .fail(function () {
+                            alert("Something failed");
+                        });
+                }
+            });
+
+            $(".js-unfriend").click(function (e) {
+                var link = $(e.target);
+               
+                $.ajax({
+                    url: "/api/friend/" + link.attr("data-unfriend-id"),
+                    method: "DELETE"
+                })
+                    .done(function () {
+                        link.hide();
+                        $(".js-friend-request").show();
+                    })
+                    .fail(function () {
+                        alert("Something failed");
+                    });
+                
+
+            });
+
+            $(".js-friend-request").click(function (e) {
+
+                var button = $(e.target);
+              
+
+                    $.post("/api/friendRequest", { friendId: button.attr("data-friend-id") })
+                        .done(function () {
+                            button
+                                .hide();
+                            $(".js-friend-request-label").text("Friend Request Sent").show();
+                        })
+                        .fail(function () {
+                            alert("Something failed...");
+                        });
+                
+                   
+
+            });
+        });
+    </script>
+
+}
+
+
+
+
+

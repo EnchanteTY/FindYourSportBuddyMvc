@@ -1,0 +1,106 @@
+﻿@model FindYourSportBuddy.UI.ViewModels.EventViewModel
+
+@{
+    ViewBag.Title = "Mine";
+}
+
+<h2>@Model.Heading</h2>
+
+@foreach (var item in Model.Events)
+{
+
+    <div class="col-md-4 eventTileTray">
+        <div class="eventTile">
+            <div class="category text-center">
+                @item.Category.Name
+            </div>
+            <div class="eventSummary row">
+                <div class="calendar text-center">
+                    <div class="month">
+                        @item.DateTime.ToString("MMM").ToUpper()
+                    </div>
+                    <div class="day">
+                        @item.DateTime.ToString("dd")
+                    </div>
+                </div>
+                <div class="detail">
+
+                    <strong class="eventName"><a href="@Url.Action("Details","Event",new { id = item.Id })">@item.Name</a></strong>
+                    @if (item.IsPrivate)
+                    {
+                        <span><label class="label label-info">Private</label></span>
+                    }
+                    
+                    <div>
+                        <span>@item.Venue</span>
+
+                        <span>@item.DateTime.ToString("HH: mm")</span>
+                    </div>
+
+
+
+                    <div class="updateEventButtonTray">
+
+                        <span><a href="@Url.Action("Edit","Event",new { id = item.Id })" class="updateEvent">Edit</a></span>
+                        <span><a href="#" class="updateEvent js-cancel-event" data-event-id="@item.Id">Cancel</a></span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+}
+
+
+@section scripts
+{
+    <script>
+       $(document).ready(function () {
+           $(".js-cancel-event").click(function (e) {
+
+
+               var link = $(e.target);
+               bootbox.dialog({
+                   message: "Are you sure you want to cancel this event?",
+                   title: "Cancel this event",
+                   buttons: {
+                       no: {
+                           label: "No",
+                           className: "btn-default",
+                           callback: function () {
+                               bootbox.hideAll();
+                           }
+                       },
+                       yes: {
+                           label: "Yes",
+                           className: "btn-danger",
+                           callback: function () {
+                               $.ajax({
+                                   url: "/api/event/" + link.attr("data-event-id"),
+                                   method: "DELETE"
+                               })
+                                   .done(function () {
+                                       link.parents(".eventTile").fadeOut(function () {
+                                           $(this).remove();
+                                       });
+                                   })
+                                   .fail(function () {
+                                       alert("Something failed...");
+                                   });
+                           }
+                       }
+                   }
+               });
+           });
+       });
+
+    </script>
+
+
+
+}

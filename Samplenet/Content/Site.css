@@ -22,3 +22,262 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.navbar-inverse {
+    background-color: midnightblue;
+    border-color: cadetblue;
+}
+
+    .navbar-inverse .navbar-nav li a {
+        color: #fbf5f3;
+    }
+
+    .navbar-inverse .navbar-brand {
+        color: #fbf5f3;
+        font-size: 30px;
+    }
+
+.navbar-right .notifications {
+    position: relative;
+}
+
+
+    .navbar-right .notifications .badge {
+        position: absolute;
+        top: 8px;
+        right: -3px;
+        background-color: aquamarine;
+    }
+
+.dropdown-menu {
+    border: solid 2px dodgerblue;
+}
+
+.navbar-inverse .dropdown-menu li a {
+    color: #000022
+}
+
+.popover-notification .popover-content {
+    padding: 0;
+}
+
+ul .notifications {
+    list-style: none;
+    padding-left: 0;
+}
+
+    ul .notifications li {
+        padding: 10px;
+        border-bottom: solid 1px #ddd;
+    }
+
+        ul .notifications li .highlight {
+            font-weight: bold;
+        }
+
+        ul .notifications li:last-child {
+            border-bottom: none;
+        }
+
+
+.imagePreview {
+    width: 200px;
+    height: 150px;
+    visibility: hidden;
+}
+
+.profileImage {
+    width: 200px;
+    height: 150px;
+}
+
+
+
+.profileThumbnail {
+    border-radius: 70%;
+    border: groove 5px blue;
+    width: 90%;
+}
+
+.profileTray {
+    width: 70%;
+    height: 50%;
+    background-color: lightblue;
+    padding: 5%;
+    border: double 5px blue;
+}
+
+.eventTileTray {
+    padding: 5px;
+}
+
+.eventTile {
+    background-color: cornflowerblue;
+    border: groove 2px blue;
+    padding: 0px;
+    height: 200px;
+}
+
+    .eventTile .row {
+        display: flex;
+    }
+
+    .eventTile .category {
+        background-color: darkblue;
+        margin: 0;
+        font-size: larger;
+        color: powderblue;
+        text-transform: uppercase;
+    }
+
+    .eventTile .calendar {
+        flex: 1;
+        margin: 7%;
+    }
+
+        .eventTile .calendar .month {
+            background-color: deepskyblue;
+            font-size: x-large;
+            font-weight: bolder;
+        }
+
+        .eventTile .calendar .day {
+            background-color: floralwhite;
+            font-weight: bold;
+            font-size: xx-large;
+            height: 50%;
+            border-radius: 0 0 10px 10px;
+        }
+
+    .eventTile .detail {
+        flex: 3;
+        font-size: larger;
+        padding-top: 5%;
+        text-align: left;
+    }
+
+        .eventTile .detail a {
+            color: floralwhite;
+        }
+
+        .eventTile .detail .eventName {
+            font-weight: bolder;
+        }
+
+.buttonTray {
+    width: 80%;
+    margin: 5%;
+    padding: 5%;
+}
+
+    .buttonTray .join {
+        color: mediumblue;
+        border: white groove 3px;
+    }
+
+
+.eventTile .updateEvent {
+    visibility: hidden;
+}
+
+.eventTile:hover .updateEvent {
+    visibility: visible;
+    display: inline-block;
+    color: white;
+    margin-right: 5px;
+    margin-top: 25px;
+}
+
+#searchEvent {
+    width: 300px;
+}
+
+.discussion textarea {
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+
+.comment .info .date {
+    font-size: 10px;
+}
+
+.slide-image {
+    width: 100%;
+    height:300px;
+}
+
+.carousel-holder {
+    margin-top: 8px;
+    
+}
+
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+    min-height:300px;
+}
+
+.slider1 {
+    background-image: url(../Content/images/sports.jpg);
+    background-attachment:local;
+    background-size:cover;
+    padding-top: 20px;
+    padding-right: 10px;
+    color: blue;
+}
+.slider2 {
+    background-image: url(../Content/images/cyclist.jpg);
+    background-attachment:fixed;
+    background-size:cover;
+    color:wheat;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+
+.slider3 {
+    background-image: url(../Content/images/football.jpg);
+    background-attachment: fixed;
+    background-position-y:bottom;
+    background-size:cover;
+    height:300px;
+}
+
+.slider3intro{
+    background-color: aliceblue;
+    color:blue;
+    height:300px;
+    padding-top:30px;
+    margin-top:0;
+   
+}
+
+.introThumbnailTray{
+    margin: 3px;
+    padding-top:20px;
+}
+
+.introThumbnail{
+    padding:5px;
+    height:150px;
+    width:150px;
+    margin:5px;
+    border:groove 2px blue;
+    
+}
+
+.friendColumn{
+    border-right: 2px solid blue;
+    min-height: 400px;
+}
+
+.acceptFriend{
+    background-color: cornflowerblue;
+    color:white;
+    margin-left: 5px;
+
+
+}
+
+
+

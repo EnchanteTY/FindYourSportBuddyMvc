@@ -2,30 +2,100 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="row carousel-holder">
+    <div class="col-md-12">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active slider1">
+                   
+                    
+                        <h1 class="pull-right">
+                            Feeling lonely or unmotivated to exercise ?<br/><br/>
+                            <a href="@Url.Action("Register", "Account", new {id ="registerLink"})" class="btn btn-primary ">
+                                Register
+                            </a> and find your sport buddy here!
+                            
+                           
+                         </h1> 
+                   
+                   
+                </div>
+                <div class="item slider2">
+                    
+                       <h1 class="pull-right">
+                            Build your 
+                            <a href="@Url.Action("Index", "UserPrfofile")" class="btn btn-default ">
+                                Profile
+                            </a> <br/><br/>
+                            Get recommended match and make friends !
+                          
+
+
+                        </h1>
+                    
+                </div>
+                <div class="item">
+                    
+                    <div class="slider3">
+                        <h1 class="slider3intro pull-left col-md-5">
+                            Join an
+                            <a href="@Url.Action("Index", "Event")" class="btn btn-info ">
+                                Exercise
+                            </a>  session <br /><br />
+                            Six different category to choose from
+                        </h1>
+                </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+<div class="row introThumbnailTray text-center">
+
+    <a href="@Url.Action("Index","Event",new { query = "basketball" })" data-toggle="tooltip" title="Basketball">
+        <img class="introThumbnail"src="~/Content/images/basketball.jpg"/>
+    </a>
+
+    <a href="@Url.Action("Index","Event",new { query = "badminton" })"data-toggle="tooltip" title="Badminton">
+        <img class="introThumbnail" src="~/Content/images/badminton.jpg" />
+    </a>
+
+    <a href="@Url.Action("Index","Event",new { query = "gym" })"data-toggle="tooltip" title="Gym">
+        <img class="introThumbnail" src="~/Content/images/gym.jpeg" />
+    </a>
+
+    <a href="@Url.Action("Index","Event",new { query = "running" })"data-toggle="tooltip" title="Running">
+        <img class="introThumbnail" src="~/Content/images/running.jpg" />
+    </a>
+
+    <a href="@Url.Action("Index","Event",new { query = "cycling" })"data-toggle="tooltip" title="Cycling">
+        <img class="introThumbnail" src="~/Content/images/cyclist.jpg" />
+    </a>
+
+    <a href="@Url.Action("Index","Event",new { query = "football" })" data-toggle="tooltip" title="Football">
+        <img class="introThumbnail" src="~/Content/images/football.jpg" />
+    </a>
+   
 </div>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

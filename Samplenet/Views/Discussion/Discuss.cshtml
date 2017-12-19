@@ -1,0 +1,43 @@
+﻿@model FindYourSportBuddy.UI.ViewModels.DiscussionViewModel
+
+@{
+    ViewBag.Title = "Discuss";
+}
+
+<h2>Discuss</h2>
+
+<h2>@Model.Event.Name</h2>
+
+
+@using (@Html.BeginForm("Discuss", "Discussion"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(e => e.Id)
+
+    <div class="form-group discussion">
+
+        @Html.TextAreaFor(d => d.Discussion.CommentString, new { @class = "form-control", autofocus = "autofocus", placeholder = "Type your comment or question here" })
+        @Html.ValidationMessageFor(d => d.Discussion.CommentString, "")
+        <button type="submit" class="btn btn-default">Add Comment</button>
+    </div>
+
+
+}
+
+@foreach (var item in Model.Discussions)
+{
+    <div class="comment">
+        <div class="info">
+            <span><strong>@item.WriterId</strong></span>
+            <span class="date">@item.DateTime</span>
+        </div>
+        <div class="data">
+            <p>@item.CommentString</p>
+        </div>
+    </div>
+
+
+
+
+}
+

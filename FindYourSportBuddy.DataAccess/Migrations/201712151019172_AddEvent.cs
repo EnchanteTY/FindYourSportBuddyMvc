@@ -1,0 +1,40 @@
+namespace FindYourSportBuddy.DataAccess.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class AddEvent : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                "dbo.Events",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        OrganizerName = c.String(),
+                        DateTime = c.DateTime(nullable: false),
+                        Region = c.Int(nullable: false),
+                        Venue = c.String(),
+                        CategoryId = c.Byte(nullable: false),
+                        Organizer_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.Organizer_Id)
+                .Index(t => t.CategoryId)
+                .Index(t => t.Organizer_Id);
+            
+        }
+        
+        public override void Down()
+        {
+            DropForeignKey("dbo.Events", "Organizer_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Events", "CategoryId", "dbo.Categories");
+            DropIndex("dbo.Events", new[] { "Organizer_Id" });
+            DropIndex("dbo.Events", new[] { "CategoryId" });
+            DropTable("dbo.Events");
+        }
+    }
+}

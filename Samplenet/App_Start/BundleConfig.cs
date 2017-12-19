@@ -1,7 +1,7 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace Samplenet
+namespace FindYourSportBuddy.UI
+
 {
     public class BundleConfig
     {
@@ -21,11 +21,15 @@ namespace Samplenet
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/underscore.js",
+                      "~/Scripts/moment.js",
+                      "~/Scripts/bootbox.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/animate.css"));
         }
     }
 }

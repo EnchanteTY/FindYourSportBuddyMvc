@@ -1,0 +1,96 @@
+﻿@model FindYourSportBuddy.UI.ViewModels.UserProfileFormViewModel
+@{    ViewBag.Title = Model.Action;
+}
+
+<h2>@Model.Heading</h2>
+
+@using (Html.BeginForm(Model.Action, "UserProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(e => e.Id)
+    @Html.AntiForgeryToken()
+    <div class="=form-group">
+        @Html.LabelFor(e => e.Name)
+        @Html.TextBoxFor(e => e.Name, new { disabled = "disabled", @class = "form-control", })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.Age)
+        @Html.TextBoxFor(e => e.Age, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(e => e.Age)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.Gender)
+        @Html.EnumDropDownListFor(e => e.Gender, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.Gender)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.PreferSportRegion)
+        @Html.EnumDropDownListFor(e => e.PreferSportRegion, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.PreferSportRegion)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.PreferSportVenue)
+        @Html.TextBoxFor(e => e.PreferSportVenue, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.PreferSportVenue)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.PreferSportTime)
+        @Html.TextBoxFor(e => e.PreferSportTime, new { @class = "form-control", placeholder = "eg Weekday evening after 9pm" })
+        @Html.ValidationMessageFor(e => e.PreferSportTime)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.InterestedSportId)
+        @Html.DropDownListFor(e => e.InterestedSportId, Model.CategoryList, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.InterestedSportId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.Introduction)
+        @Html.TextAreaFor(e => e.Introduction, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.Introduction)
+    </div>
+
+    <div class="form-group">
+        <label>Image</label>
+        <input name="Image" type="file" onchange="showpreview(this);" />
+
+        <img id="js-img-preview" class="imagePreview" src="" />
+        @if (Model.ImageData != null)
+        {
+            <img class="profileImage"
+                 src="@Url.Action("GetProfileImage", "UserProfile", new {userName = Model.Name})" />
+        }
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+     function showpreview(input) {
+
+         if (input.files && input.files[0]) {
+
+             var reader = new FileReader();
+             reader.onload = function (e) {
+                 $('#js-img-preview').css('visibility', 'visible');
+                 $('#js-img-preview').attr('src', e.target.result);
+                 $('.profileImage').hide();
+             }
+             reader.readAsDataURL(input.files[0]);
+         }
+
+     }
+
+</script>
+
+
+

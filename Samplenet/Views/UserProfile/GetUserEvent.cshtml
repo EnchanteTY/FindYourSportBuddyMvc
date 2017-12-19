@@ -1,0 +1,42 @@
+﻿@model FindYourSportBuddy.UI.ViewModels.UserEventViewModel
+
+<div>
+    <div>
+        <h3>Events created:</h3>
+        @if (Model.EventsCreated.Count() > 0)
+        {
+            <ul>
+                @foreach (var sportEvent in Model.EventsCreated)
+                {
+                    <li> <a href="@Url.Action("Details","Event",new { id = sportEvent.Id })">@sportEvent.Name</a></li>
+                }
+            </ul>
+        }
+        else
+        { 
+            <p> User haven't created any events yet.</p>
+        }
+        
+       
+    </div>
+    <hr/>
+    <div>
+        <h3>Events participated:</h3>
+
+        @if (Model.EventsParticpated.Count() > 0)
+        {
+            <ul>
+                @foreach (var sportEvent in Model.EventsParticpated)
+                {
+                    <li> <a href="@Url.Action("Details","Event",new { id = sportEvent.Id })">@sportEvent.Name</a></li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p> User haven't participated in any events yet.</p>
+        }
+
+
+    </div>
+</div>

@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{85FB5A1E-965C-4F05-995A-45FC7D7E442B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FindYourSportBuddy.DataAccess</RootNamespace>
+    <AssemblyName>FindYourSportBuddy.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppDbContext.cs" />
+    <Compile Include="DTOs\AttendanceDTO.cs" />
+    <Compile Include="DTOs\CategoryDTO.cs" />
+    <Compile Include="DTOs\EventDTO.cs" />
+    <Compile Include="DTOs\FollowingDTO.cs" />
+    <Compile Include="DTOs\FriendDTO.cs" />
+    <Compile Include="DTOs\NotificationDTO.cs" />
+    <Compile Include="DTOs\UserDTO.cs" />
+    <Compile Include="Migrations\201712150957563_Initial.cs" />
+    <Compile Include="Migrations\201712150957563_Initial.Designer.cs">
+      <DependentUpon>201712150957563_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151002467_AddCategoryAndUserProfile.cs" />
+    <Compile Include="Migrations\201712151002467_AddCategoryAndUserProfile.Designer.cs">
+      <DependentUpon>201712151002467_AddCategoryAndUserProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151003224_PopulateCategory.cs" />
+    <Compile Include="Migrations\201712151003224_PopulateCategory.Designer.cs">
+      <DependentUpon>201712151003224_PopulateCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151005253_AddNameToApplicationUser.cs" />
+    <Compile Include="Migrations\201712151005253_AddNameToApplicationUser.Designer.cs">
+      <DependentUpon>201712151005253_AddNameToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151019172_AddEvent.cs" />
+    <Compile Include="Migrations\201712151019172_AddEvent.Designer.cs">
+      <DependentUpon>201712151019172_AddEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151022474_AddAttendance.cs" />
+    <Compile Include="Migrations\201712151022474_AddAttendance.Designer.cs">
+      <DependentUpon>201712151022474_AddAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151024023_AddIsCancelledIntoEvent.cs" />
+    <Compile Include="Migrations\201712151024023_AddIsCancelledIntoEvent.Designer.cs">
+      <DependentUpon>201712151024023_AddIsCancelledIntoEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151025143_AddParticipantsRequiredIntoEvent.cs" />
+    <Compile Include="Migrations\201712151025143_AddParticipantsRequiredIntoEvent.Designer.cs">
+      <DependentUpon>201712151025143_AddParticipantsRequiredIntoEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151033423_AddNotification.cs" />
+    <Compile Include="Migrations\201712151033423_AddNotification.Designer.cs">
+      <DependentUpon>201712151033423_AddNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151036190_AddDiscussion.cs" />
+    <Compile Include="Migrations\201712151036190_AddDiscussion.Designer.cs">
+      <DependentUpon>201712151036190_AddDiscussion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712170152585_AddFollowingAndFriend.cs" />
+    <Compile Include="Migrations\201712170152585_AddFollowingAndFriend.Designer.cs">
+      <DependentUpon>201712170152585_AddFollowingAndFriend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712171424560_AddIsPrivateIntoEvent.cs" />
+    <Compile Include="Migrations\201712171424560_AddIsPrivateIntoEvent.Designer.cs">
+      <DependentUpon>201712171424560_AddIsPrivateIntoEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AttendanceRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\DiscussionRepository.cs" />
+    <Compile Include="Repositories\EventRepository.cs" />
+    <Compile Include="Repositories\FollowingRepository.cs" />
+    <Compile Include="Repositories\FriendRequestRepository.cs" />
+    <Compile Include="Repositories\NotificationRepository.cs" />
+    <Compile Include="Repositories\UserNotificationReposiotry.cs" />
+    <Compile Include="Repositories\UserProfileRepository.cs" />
+    <Compile Include="UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\FindYourSportBuddy.BL.csproj">
+      <Project>{95fc3e55-0613-410e-a933-979783c86afe}</Project>
+      <Name>FindYourSportBuddy.BL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201712150957563_Initial.resx">
+      <DependentUpon>201712150957563_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151002467_AddCategoryAndUserProfile.resx">
+      <DependentUpon>201712151002467_AddCategoryAndUserProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151003224_PopulateCategory.resx">
+      <DependentUpon>201712151003224_PopulateCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151005253_AddNameToApplicationUser.resx">
+      <DependentUpon>201712151005253_AddNameToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151019172_AddEvent.resx">
+      <DependentUpon>201712151019172_AddEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151022474_AddAttendance.resx">
+      <DependentUpon>201712151022474_AddAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151024023_AddIsCancelledIntoEvent.resx">
+      <DependentUpon>201712151024023_AddIsCancelledIntoEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151025143_AddParticipantsRequiredIntoEvent.resx">
+      <DependentUpon>201712151025143_AddParticipantsRequiredIntoEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151033423_AddNotification.resx">
+      <DependentUpon>201712151033423_AddNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151036190_AddDiscussion.resx">
+      <DependentUpon>201712151036190_AddDiscussion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712170152585_AddFollowingAndFriend.resx">
+      <DependentUpon>201712170152585_AddFollowingAndFriend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712171424560_AddIsPrivateIntoEvent.resx">
+      <DependentUpon>201712171424560_AddIsPrivateIntoEvent.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

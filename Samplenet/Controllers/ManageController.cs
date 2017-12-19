@@ -1,14 +1,13 @@
-﻿using System;
+﻿using FindYourSportBuddy.UI.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Samplenet.Models;
 
-namespace Samplenet.Controllers
+namespace FindYourSportBuddy.UI.Controllers
 {
     [Authorize]
     public class ManageController : Controller
@@ -32,9 +31,9 @@ namespace Samplenet.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -333,7 +332,7 @@ namespace Samplenet.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +383,6 @@ namespace Samplenet.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

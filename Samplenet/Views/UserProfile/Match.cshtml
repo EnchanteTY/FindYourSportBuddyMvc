@@ -1,0 +1,27 @@
+﻿@model FindYourSportBuddy.UI.ViewModels.UserProfileViewModel
+
+@{
+    ViewBag.Title = "Recommended Match";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="matchProfileTray">
+    @foreach (var item in Model.UserProfiles)
+    {
+        <div class="col-md-4">
+            <div class="text-center profileTray">
+                <div>
+                    <img class="profileThumbnail" src="@Url.Action("GetProfileImage", "UserProfile", new {userName = item.Name})" />"
+                </div>
+                <div class="profile-detail">
+                    <h2><strong><a href="@Url.Action("Index","UserProfile",new{userName =@item.Name})">@item.Name</a></strong></h2>
+                    <h3>@item.Age,@item.Gender</h3>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    }
+</div>

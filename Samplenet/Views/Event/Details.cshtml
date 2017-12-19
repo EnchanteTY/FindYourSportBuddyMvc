@@ -1,0 +1,82 @@
+﻿@model FindYourSportBuddy.UI.ViewModels.EventDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Event Details</h2>
+
+<h3>@Model.UpcomingEvent.Name</h3>
+
+<span>organized by 
+    <a href="@Url.Action("Index","UserProfile",new { userName = Model.UpcomingEvent.OrganizerName })"> 
+        @Model.UpcomingEvent.OrganizerName
+    </a>
+</span>
+
+<hr />
+
+<p>
+    on @Model.UpcomingEvent.DateTime.ToString("d MMM") at @Model.UpcomingEvent.DateTime.ToString("HH:mm") <br />
+    in @Model.UpcomingEvent.Venue (@Model.UpcomingEvent.Region)<br />
+    requires @Model.UpcomingEvent.ParticipantsRequired people, currently has @Model.CurrentAttendances people registered
+
+    @if (Model.UpcomingEvent.ParticipantsRequired == Model.CurrentAttendances)
+    {
+        <span class="label label-warning">full</span>
+    }
+
+</p>
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (Model.IsJoining)
+    {
+        <p> You are going to this event.</p>
+        <a class="btn btn-info" href="@Url.Action("Discuss","Discussion", new {id = Model.UpcomingEvent.Id})">Participate in Discussion</a>
+    }
+    else
+    {
+        if (!Model.IsFriend && Model.UpcomingEvent.IsPrivate)
+        {
+            <button disabled="disabled" class="join">Join?</button>
+        }
+        else
+        {
+
+            <button data-event-id="@Model.UpcomingEvent.Id" class="btn btn-default js-register-attendance">Join?</button>
+            <p class="goingStatement hide"> You are going to this event.</p>
+        }
+
+    }
+}
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            $(".js-register-attendance").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/attendance", { eventId: button.attr("data-event-id") })
+                    .done(function () {
+
+                        button.hide();
+
+
+                    })
+                    .fail(function () {
+                        alert("Something failed!");
+                    });
+            });
+
+        });
+    </script>
+
+}
+
+
+
+
+

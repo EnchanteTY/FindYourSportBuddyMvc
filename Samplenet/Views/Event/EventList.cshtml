@@ -1,0 +1,145 @@
+﻿@model FindYourSportBuddy.UI.ViewModels.EventViewModel
+@{
+    ViewBag.Title = Model.Heading;
+}
+
+<h2>@Model.Heading</h2>
+
+@using (Html.BeginForm("Search", "Event"))
+{
+    <div class="form-group">
+        <div id="searchEvent" class="input-group">
+            @Html.TextBoxFor(s => s.SearchTerm, new { @class = "form-control", placeholder = "Search by event name, location or organizer" })
+            <span class="input-group-addon">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+
+    </div>
+
+}
+
+@foreach (var item in Model.Events)
+{
+
+    <div class="col-md-4 eventTileTray">
+        <div class="eventTile">
+            <div class="category text-center">
+                @item.Category.Name
+            </div>
+            <div class="eventSummary row">
+                <div class="calendar text-center">
+                    <div class="month">
+                        @item.DateTime.ToString("MMM").ToUpper()
+                    </div>
+                    <div class="day">
+                        @item.DateTime.ToString("dd")
+                    </div>
+                </div>
+                <div class="detail">
+
+                    <div>
+                        <strong><a href="@Url.Action("Details","Event",new { id = item.Id })">@item.Name</a></strong>
+
+                    </div>
+                    @if (item.IsPrivate)
+                    {
+                        <span><label class="label label-info">Private</label></span>
+                    }
+                    @if (item.IsCancelled)
+                    {
+                        <div class="label label-warning">Cancelled</div>
+                    }
+                    @if (item.ParticipantsRequired == Model.currentAttendanceCount)
+                    {
+                        <div class="label label-warning">Full</div>
+                    }
+                    <div><a href="@Url.Action("Index","UserProfile",new { userName = item.OrganizerName })"> @item.OrganizerName</a></div>
+
+                    <span>@item.Venue</span>
+
+                    <span>@item.DateTime.ToString("HH: mm")</span>
+
+                    <div class="buttonTray">
+                        @if (Model.ShowJoinButton && !item.IsCancelled
+                    && Model.currentAttendanceCount < item.ParticipantsRequired && item.OrganizerName!=User.Identity.Name)
+                        {
+                            if(item.IsPrivate && !Model.Friends.Contains(item.OrganizerName))
+                            {
+                                <button disabled="disabled" class="join">Join?</button>
+                            }
+                            else
+                            {
+
+                                <button data-event-id="@item.Id"
+                                        class="join js-toggle-attendance
+                                         @(Model.Attendances.Contains(item.Id) ? "btn-info" : "btn-default") btn">
+
+                                    @(Model.Attendances.Contains(item.Id) ? "Joining" : "Join?")
+
+                                </button>
+                            }
+
+
+                        }
+                       
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-toggle-attendance").click(function (e) {
+               
+                var button = $(e.target);
+                if (button.hasClass("btn-default")) {
+                    $.post("/api/attendance", { eventId: button.attr("data-event-id") })
+                        .done(function () {
+                            button
+                                .removeClass("btn-default")
+                                .addClass("btn-info")
+                                .text("Joining");
+                        })
+                        .fail(function () {
+                            alert("Something failed...");
+                        });
+                }
+                else {
+                    $.ajax({
+                        url: "/api/attendance/" + button.attr("data-event-id"),
+                        method: "DELETE"
+                    })
+                        .done(function () {
+                            button
+                                .removeClass("btn-info")
+                                .addClass("btn-default")
+                                .text("Join?");
+                        })
+                        .fail(function () {
+                            alert("Something failed");
+                        });
+                }
+            });
+        });
+    </script>
+
+}
+
+
+
+
+

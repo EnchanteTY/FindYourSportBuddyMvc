@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FindYourSportBuddy.BL.Entities.ApplicationUser>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="col-md-4 friendColumn">
+    <h2>My Friends</h2>
+    <ul>
+        @foreach (var friend in Model)
+        {
+            <li>
+                <a href="@Url.Action("Index","UserProfile",new { userName = friend.UserName })">@friend.UserName</a>
+            </li>
+        }
+    </ul>
+
+</div>
+<div class="col-md-8">
+    @Html.Action("FriendRequests","Friend")
+</div>
+
+
+@section scripts
+    {
+    <script>
+            $(document).ready(function () {
+                $(".js-add-friend").click(function (e) {
+                    console.log("m");
+                    var button = $(e.target);
+
+                    $.post("/api/friend", { requesterId: button.attr("data-friend-id") })
+                        .done(function () {
+                            button
+                                .removeClass("btn-default")
+                                .addClass("btn-success")
+                                .text("Accepted")
+                        })
+                        .fail(function () {
+                            alert("Something failed...");
+                        });
+
+                });
+
+
+
+            });
+    </script>
+
+
+
+
+}
+
+
